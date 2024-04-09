@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Articles</h1>
+
+<%= render 'articles/search_form.html.erb' %>
+<table>
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :title, "Title", default_order: :asc) %></th>
+      <th><%= sort_link(@q, :body, "Article Content", default_order: :desc) %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= article.title %></td>
+        <td><%= article.body %></td>
+        <td><%= link_to 'Show', article %></td>
+        <td><%= link_to 'Edit', edit_article_path(article) %></td>
+        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Article', new_article_path %>
